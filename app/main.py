@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 
+
+
 app = FastAPI(
     title="Stock Market API",
     description="Backend API for Stock Market Application",
@@ -10,4 +12,10 @@ app = FastAPI(
 def home():
     return{
         "message":"Stock Market API is running"
+    }
+
+@app.get("/health")
+def health_check():
+    return {
+        "status":"ok"
     }
