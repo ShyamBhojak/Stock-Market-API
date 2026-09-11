@@ -22,3 +22,11 @@ def createstock(stock: StockCreate, db:Session = Depends(get_db)):
     db.refresh(new_stock)
 
     return new_stock
+
+@router.get("/")
+def getstocks(db:Session = Depends(get_db)):
+    stocks = db.query(Stock).all()
+    return {
+        "status":"All Stocks",
+        "Stocks": stocks
+    }
