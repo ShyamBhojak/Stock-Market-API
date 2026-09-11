@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.core.database import engine
 from app.core.base import Base
 from app.models import User, Stock, Portfolio, Transaction, Watchlist
+from app.api.routes.stock import router as stock_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -11,6 +12,8 @@ app = FastAPI(
     description="Backend API for Stock Market Application",
     version="1.0.0"
 )
+
+app.include_router(stock_router)
 
 @app.get("/")
 def home():
